@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "Dashboard",
+    "LoginPage",
+    "SignUpPage",
+    "UsersPage",
+    "SettingsPage"
+  ],
+  "components": [
+    "Header",
+    "Footer",
+    "Loader",
+    "ProtectedRoute"
+  ]
+}

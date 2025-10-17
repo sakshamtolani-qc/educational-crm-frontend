@@ -6,6 +6,7 @@ import { Toaster } from '@/utils/toaster';
 import { Toaster as Sonner } from '@/utils/sonner';
 import { Login } from './pages/LoginPage/LoginPage';
 import { Footer } from '@/components/Footer/Footer';
+import Signup from './pages/SignupPage/SignupPage';
 
 // -------------------- Loading Context --------------------
 interface LoadingContextType {
@@ -97,6 +98,8 @@ const App: React.FC = () => (
                 </Layout>
               }
             />
+
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </BrowserRouter>
       </LoadingProvider>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import './LoginPage.css';
 import { PageLoader } from '@/components/Loader/Loader';
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -158,9 +159,9 @@ export const Login = () => {
 
               <p className="login-signup-text">
                 Don't have an account?{' '}
-                <a href="#" className="login-signup-link">
+                <Link to="/signup" className="login-signup-link">
                   Sign up now
-                </a>
+                </Link>
               </p>
             </form>
           </div>

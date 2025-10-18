@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Users,
   BookOpen,
   GraduationCap,
   UserCheck,
-  Bell,
-  Search,
   TrendingUp,
   TrendingDown,
-  Menu,
-  ChevronRight,
   Clock,
   DollarSign,
   Calendar,
@@ -17,9 +13,15 @@ import {
   Circle
 } from 'lucide-react';
 import './DashboardPage.css';
-import { ChartPlaceholder } from '@/components/Dashboard/ChartPlaceholder';
-import { AdmissionsFunnel } from '@/components/Dashboard/AdmissionsFunnel';
-import { Navbar } from '@/components/Admin/Navbar';
+import { ChartPlaceholder } from '@/components/Admin/Dashboard/ChartPlaceholder';
+import { AdmissionsFunnel } from '@/components/Admin/Dashboard/AdmissionsFunnel';
+
+interface PageProps {
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
+  activeNav: string;
+  setActiveNav: (id: string) => void;
+}
 
 interface StatCardProps {
   title: string;
@@ -105,10 +107,12 @@ const PerformanceItem: React.FC<{ item: typeof performanceData.top[0], type: 'to
   );
 };
 
-export const DashboardPage: React.FC = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState('dashboard');
-
+export const DashboardPage: React.FC<PageProps> = ({
+  sidebarOpen,
+  setSidebarOpen,
+  activeNav,
+  setActiveNav,
+}) => {
   const stats = [
     {
       title: 'TOTAL STUDENTS',
@@ -211,157 +215,117 @@ export const DashboardPage: React.FC = () => {
   ];
 
   return (
-    <div className="dashboard-layout">
-      <Navbar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-        activeNav={activeNav}
-        setActiveNav={setActiveNav}
-      />
-
-      <div className="main-content">
-        <header className="top-header">
-          <div className="header-left-section">
-            <button
-              className="sidebar-toggle"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              aria-label="Toggle sidebar"
-            >
-              <Menu size={22} />
-            </button>
-            <div className="breadcrumb">
-              <span className="breadcrumb-item">Dashboard</span>
-              <ChevronRight size={16} className="breadcrumb-separator" />
-              <span className="breadcrumb-item active">Overview</span>
-            </div>
+    <div className="dashboard-page-content">
+      <main className="content-area">
+        <div className="page-title-section-wrapper">
+          <div className="page-title-section">
+            <h1 className="page-title">Dashboard Overview</h1>
+            <p className="page-subtitle">Welcome back! Here's what's happening with your institution today.</p>
           </div>
+          <button className="primary-action-btn">
+            <UserCheck size={20} />
+            <span>Quick Enroll Student</span>
+          </button>
+        </div>
 
-          <div className="header-right-section">
-            <div className="header-search">
-              <Search size={18} />
-              <input type="text" placeholder="Search students, courses..." />
-            </div>
-            <button className="header-icon-btn notification-bell" aria-label="Notifications">
-              <Bell size={20} />
-              <span className="notification-dot"></span>
-            </button>
-            <button className="header-icon-btn" aria-label="User menu">
-              <div className="user-avatar-header">AD</div>
-            </button>
-          </div>
-        </header>
+        <div className="stats-grid-modern">
+          {stats.map((stat, index) => (
+            <StatCard key={index} {...stat} />
+          ))}
+        </div>
 
-        <main className="content-area">
-          <div className="page-title-section-wrapper">
-            <div className="page-title-section">
-              <h1 className="page-title">Dashboard Overview</h1>
-              <p className="page-subtitle">Welcome back! Here's what's happening with your institution today.</p>
-            </div>
-            <button className="primary-action-btn">
-              <UserCheck size={20} />
-              <span>Quick Enroll Student</span>
-            </button>
-          </div>
+        <div className="content-sections">
+          <div className="main-section">
+            <ChartPlaceholder />
 
-          <div className="stats-grid-modern">
-            {stats.map((stat, index) => (
-              <StatCard key={index} {...stat} />
-            ))}
-          </div>
+            <div className="quick-stats-row">
+              <AdmissionsFunnel />
 
-          <div className="content-sections">
-            <div className="main-section">
-              <ChartPlaceholder />
-
-              <div className="quick-stats-row">
-                <AdmissionsFunnel />
-
-                <div className="quick-stat-card green">
-                  <div className="quick-stat-icon">
-                    <DollarSign size={24} />
-                  </div>
-                  <div className="quick-stat-info">
-                    <div className="quick-stat-label">Revenue Target</div>
-                    <div className="quick-stat-value">$150,000</div>
-                    <div className="quick-stat-change positive">78% Achieved YTD</div>
-                  </div>
+              <div className="quick-stat-card green">
+                <div className="quick-stat-icon">
+                  <DollarSign size={24} />
                 </div>
-
-                <div className="quick-stat-card purple">
-                  <div className="quick-stat-icon">
-                    <Calendar size={24} />
-                  </div>
-                  <div className="quick-stat-info">
-                    <div className="quick-stat-label">Upcoming Exams</div>
-                    <div className="quick-stat-value">12</div>
-                    <div className="quick-stat-change neutral">Next exam in 3 days</div>
-                  </div>
+                <div className="quick-stat-info">
+                  <div className="quick-stat-label">Revenue Target</div>
+                  <div className="quick-stat-value">$150,000</div>
+                  <div className="quick-stat-change positive">78% Achieved YTD</div>
                 </div>
               </div>
 
-              <div className="card activities-card">
-                <div className="card-header">
-                  <h2 className="card-title">Recent Activities</h2>
-                  <button className="view-all-btn">View All</button>
+              <div className="quick-stat-card purple">
+                <div className="quick-stat-icon">
+                  <Calendar size={24} />
                 </div>
-                <div className="activities-list">
-                  {recentActivities.map((activity) => (
-                    <div key={activity.id} className="activity-row">
-                      <div className="activity-avatar">{activity.avatar}</div>
-                      <div className="activity-details">
-                        <p className="activity-text">
-                          <strong>{activity.student}</strong> {activity.action}{' '}
-                          <span className="activity-course">{activity.course}</span>
-                        </p>
-                        <div className="activity-meta">
-                          <Clock size={14} />
-                          <span>{activity.time}</span>
-                        </div>
+                <div className="quick-stat-info">
+                  <div className="quick-stat-label">Upcoming Exams</div>
+                  <div className="quick-stat-value">12</div>
+                  <div className="quick-stat-change neutral">Next exam in 3 days</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card activities-card">
+              <div className="card-header">
+                <h2 className="card-title">Recent Activities</h2>
+                <button className="view-all-btn">View All</button>
+              </div>
+              <div className="activities-list">
+                {recentActivities.map((activity) => (
+                  <div key={activity.id} className="activity-row">
+                    <div className="activity-avatar">{activity.avatar}</div>
+                    <div className="activity-details">
+                      <p className="activity-text">
+                        <strong>{activity.student}</strong> {activity.action}{' '}
+                        <span className="activity-course">{activity.course}</span>
+                      </p>
+                      <div className="activity-meta">
+                        <Clock size={14} />
+                        <span>{activity.time}</span>
                       </div>
-                      <button className="activity-action-btn">View</button>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="side-section">
-              <div className="card performance-card">
-                <div className="card-header">
-                  <h2 className="card-title">Academic Performance</h2>
-                  <button className="view-all-btn">Full Report</button>
-                </div>
-                <div className="performance-list-wrapper">
-                  <h3>Top Performing Courses:</h3>
-                  <div className="performance-list top-list">
-                    {performanceData.top.map((item, index) => (
-                      <PerformanceItem key={index} item={item} type="top" />
-                    ))}
+                    <button className="activity-action-btn">View</button>
                   </div>
-
-                  <h3 className="mt-4">Areas for Improvement:</h3>
-                  <div className="performance-list bottom-list">
-                    {performanceData.bottom.map((item, index) => (
-                      <PerformanceItem key={index} item={item} type="bottom" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="card notifications-card">
-                <div className="card-header">
-                  <h2 className="card-title">Recent Notifications</h2>
-                </div>
-                <div className="notifications-list">
-                  {notifications.map((notification, index) => (
-                    <NotificationItem key={index} {...notification} />
-                  ))}
-                </div>
+                ))}
               </div>
             </div>
           </div>
-        </main>
-      </div>
+
+          <div className="side-section">
+            <div className="card performance-card">
+              <div className="card-header">
+                <h2 className="card-title">Academic Performance</h2>
+                <button className="view-all-btn">Full Report</button>
+              </div>
+              <div className="performance-list-wrapper">
+                <h3>Top Performing Courses:</h3>
+                <div className="performance-list top-list">
+                  {performanceData.top.map((item, index) => (
+                    <PerformanceItem key={index} item={item} type="top" />
+                  ))}
+                </div>
+
+                <h3 className="mt-4">Areas for Improvement:</h3>
+                <div className="performance-list bottom-list">
+                  {performanceData.bottom.map((item, index) => (
+                    <PerformanceItem key={index} item={item} type="bottom" />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="card notifications-card">
+              <div className="card-header">
+                <h2 className="card-title">Recent Notifications</h2>
+              </div>
+              <div className="notifications-list">
+                {notifications.map((notification, index) => (
+                  <NotificationItem key={index} {...notification} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

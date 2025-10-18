@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Users,
   BookOpen,
@@ -16,6 +17,7 @@ interface NavItem {
   id: string;
   label: string;
   icon: React.ReactNode;
+  path?: string;
 }
 
 interface AdminNavbarProps {
@@ -31,26 +33,27 @@ export const Navbar: React.FC<AdminNavbarProps> = ({
   activeNav,
   setActiveNav
 }) => {
+  const navigate = useNavigate();
+
   const navItems: NavItem[] = [
-    { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
-    { id: 'students', label: 'Students', icon: <Users size={20} /> },
-    { id: 'teachers', label: 'Teachers', icon: <GraduationCap size={20} /> },
-    { id: 'courses', label: 'Courses', icon: <BookOpen size={20} /> },
-    { id: 'assignments', label: 'Assignments', icon: <FileText size={20} /> },
-    { id: 'reports', label: 'Reports', icon: <Award size={20} /> },
-    { id: 'settings', label: 'Settings', icon: <Settings size={20} /> },
+    { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
+    { id: 'students', label: 'Students', icon: <Users size={20} />, path: '/students' },
+    { id: 'faculties', label: 'Faculties', icon: <GraduationCap size={20} />, path: '/faculties' },
+    { id: 'courses', label: 'Courses', icon: <BookOpen size={20} />, path: '/courses' },
+    { id: 'assignments', label: 'Assignments', icon: <FileText size={20} />, path: '/assignments' },
+    { id: 'reports', label: 'Reports', icon: <Award size={20} />, path: '/reports' },
+    { id: 'settings', label: 'Settings', icon: <Settings size={20} />, path: '/settings' },
   ];
 
-  const handleNavClick = (id: string) => {
-    setActiveNav(id);
-    if (window.innerWidth <= 768) {
-      setSidebarOpen(false);
-    }
+  const handleNavClick = (item: NavItem) => {
+    setActiveNav(item.id);
+    if (item.path) navigate(item.path);
+    if (window.innerWidth <= 768) setSidebarOpen(false);
   };
 
   return (
     <>
-      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+      {sidebarOpen && window.innerWidth <= 768 && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
 
       <aside className={`sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
@@ -60,27 +63,17 @@ export const Navbar: React.FC<AdminNavbarProps> = ({
             </div>
             {sidebarOpen && <span className="logo-text">EduCRM</span>}
           </div>
-          <button
-            className="sidebar-close-btn"
-            onClick={() => setSidebarOpen(false)}
-            aria-label="Close sidebar"
-          >
+          <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar">
             <X size={22} />
           </button>
         </div>
 
         <nav className="sidebar-nav">
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              className={`nav-item ${activeNav === item.id ? 'active' : ''}`}
-              onClick={() => handleNavClick(item.id)}
-            >
+            <button key={item.id} className={`nav-item ${activeNav === item.id ? 'active' : ''}`} onClick={() => handleNavClick(item)}>
               <span className="nav-icon">{item.icon}</span>
               {sidebarOpen && <span className="nav-label">{item.label}</span>}
-              {sidebarOpen && activeNav === item.id && (
-                <ChevronRight size={18} className="nav-arrow" />
-              )}
+              {sidebarOpen && activeNav === item.id && <ChevronRight size={18} className="nav-arrow" />}
             </button>
           ))}
         </nav>

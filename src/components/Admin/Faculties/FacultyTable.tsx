@@ -55,13 +55,7 @@ const FacultyTable: React.FC<FacultyTableProps> = ({
                   </span>
                 </td>
                 <td className="actions-cell">
-                  <button
-                    className="action-btn view-btn"
-                    onClick={() => onView(faculty)}
-                    title="View Details"
-                  >
-                    <Eye size={18} />
-                  </button>
+                  
                   <button
                     className="action-btn edit-btn"
                     onClick={() => onEdit(faculty)}

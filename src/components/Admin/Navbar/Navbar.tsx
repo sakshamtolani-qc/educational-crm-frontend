@@ -40,7 +40,7 @@ export const Navbar: React.FC<AdminNavbarProps> = ({
     { id: 'students', label: 'Students', icon: <Users size={20} />, path: '/students' },
     { id: 'faculties', label: 'Faculties', icon: <GraduationCap size={20} />, path: '/faculties' },
     { id: 'courses', label: 'Courses', icon: <BookOpen size={20} />, path: '/courses' },
-    { id: 'assignments', label: 'Assignments', icon: <FileText size={20} />, path: '/assignments' },
+    { id: 'subjects', label: 'Subjects', icon: <FileText size={20} />, path: '/subjects' },
     { id: 'reports', label: 'Reports', icon: <Award size={20} />, path: '/reports' },
     { id: 'settings', label: 'Settings', icon: <Settings size={20} />, path: '/settings' },
   ];

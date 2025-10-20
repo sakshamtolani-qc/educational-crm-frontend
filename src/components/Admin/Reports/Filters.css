@@ -1,0 +1,139 @@
+.filters-container {
+  background: white;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.filters-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #12181e;
+}
+
+.filters-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #12181e;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #12181e;
+  margin-bottom: 0.25rem;
+}
+
+.filter-select,
+.filter-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #12181e;
+  background-color: white;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.filter-select:hover,
+.filter-input:hover {
+  border-color: #cbd5e1;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  border-color: #27ac1f;
+  box-shadow: 0 0 0 3px rgba(39, 172, 31, 0.1);
+}
+
+.filters-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn-reset {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: 2px solid #e2e8f0;
+}
+
+.filter-btn-reset:hover {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.filter-btn-apply {
+  background-color: #27ac1f;
+  color: white;
+  box-shadow: 0 2px 4px rgba(39, 172, 31, 0.2);
+}
+
+.filter-btn-apply:hover {
+  background-color: #229a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(39, 172, 31, 0.3);
+}
+
+.filter-btn-apply:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .filters-container {
+    padding: 1rem;
+  }
+
+  .filters-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .filters-actions {
+    flex-direction: column;
+  }
+
+  .filter-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

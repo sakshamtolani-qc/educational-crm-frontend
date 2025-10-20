@@ -1,0 +1,116 @@
+/* ReportsPage.css */
+
+.reports-page {
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.reports-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.reports-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.export-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background-color: #27ac1f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(39, 172, 31, 0.2);
+}
+
+.export-btn:hover {
+  background-color: #229a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(39, 172, 31, 0.3);
+}
+
+.export-btn:active {
+  transform: translateY(0);
+}
+
+.export-btn svg {
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .reports-title {
+    font-size: 2rem;
+  }
+  .reports-page {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .reports-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .reports-title {
+    font-size: 1.75rem;
+  }
+  .reports-subtitle {
+    font-size: 0.9rem;
+  }
+  .export-actions {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .export-btn {
+    flex-grow: 1;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  .reports-page {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .export-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

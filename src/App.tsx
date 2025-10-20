@@ -14,6 +14,7 @@ import { Menu, X, Search, Bell, ChevronRight } from 'lucide-react';
 import FacultiesPage from "@/pages/FacultiesPage/FacultiesPage";
 import CoursesPage from "./pages/CoursesPage/CoursesPage";
 import { SubjectsPage } from "./pages/SubjectsPage/SubjectsPage";
+import { ReportsPage } from "./pages/ReportsPage/ReportsPage";
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -125,6 +126,7 @@ const PageLayout: React.FC = () => {
           <Route path="/faculties" element={<FacultiesPage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/subjects" element={<SubjectsPage />} />
+          <Route path="/reports" element={<ReportsPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

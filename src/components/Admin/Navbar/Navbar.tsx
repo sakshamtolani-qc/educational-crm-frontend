@@ -9,7 +9,10 @@ import {
   Settings,
   Award,
   ChevronRight,
-  X
+  X,
+  CreditCard,
+  CheckSquare,
+  Clipboard
 } from 'lucide-react';
 import './Navbar.css';
 
@@ -36,14 +39,18 @@ export const Navbar: React.FC<AdminNavbarProps> = ({
   const navigate = useNavigate();
 
   const navItems: NavItem[] = [
-    { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
-    { id: 'students', label: 'Students', icon: <Users size={20} />, path: '/students' },
-    { id: 'faculties', label: 'Faculties', icon: <GraduationCap size={20} />, path: '/faculties' },
-    { id: 'courses', label: 'Courses', icon: <BookOpen size={20} />, path: '/courses' },
-    { id: 'subjects', label: 'Subjects', icon: <FileText size={20} />, path: '/subjects' },
-    { id: 'reports', label: 'Reports', icon: <Award size={20} />, path: '/reports' },
-    { id: 'settings', label: 'Settings', icon: <Settings size={20} />, path: '/settings' },
-  ];
+  { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} />, path: '/dashboard' },
+  { id: 'students', label: 'Students', icon: <Users size={20} />, path: '/students' },
+  { id: 'faculties', label: 'Faculties', icon: <GraduationCap size={20} />, path: '/faculties' },
+  { id: 'courses', label: 'Courses', icon: <BookOpen size={20} />, path: '/courses' },
+  { id: 'subjects', label: 'Subjects', icon: <FileText size={20} />, path: '/subjects' },
+  { id: 'fees', label: 'Fees', icon: <CreditCard size={20} />, path: '/fees' },
+  { id: 'attendance', label: 'Attendance', icon: <CheckSquare size={20} />, path: '/attendance' },
+  { id: 'exams', label: 'Exams', icon: <Clipboard size={20} />, path: '/exams' },
+  { id: 'reports', label: 'Reports', icon: <Award size={20} />, path: '/reports' },
+  { id: 'settings', label: 'Settings', icon: <Settings size={20} />, path: '/settings' },
+];
+
 
   const handleNavClick = (item: NavItem) => {
     setActiveNav(item.id);

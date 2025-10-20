@@ -15,6 +15,7 @@ import FacultiesPage from "@/pages/FacultiesPage/FacultiesPage";
 import CoursesPage from "./pages/CoursesPage/CoursesPage";
 import { SubjectsPage } from "./pages/SubjectsPage/SubjectsPage";
 import { ReportsPage } from "./pages/ReportsPage/ReportsPage";
+import { SettingsPage } from './pages/SettingsPage/SettingsPage';
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -127,6 +128,7 @@ const PageLayout: React.FC = () => {
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/subjects" element={<SubjectsPage />} />
           <Route path="/reports" element={<ReportsPage />} />
+          <Route path="/settings" element={<SettingsPage {...pageProps}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

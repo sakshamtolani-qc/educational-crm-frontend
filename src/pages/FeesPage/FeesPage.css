@@ -1,0 +1,46 @@
+/* src/pages/FeesPage/FeesPage.css */
+
+.fees-page {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.fees-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #12181e;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+.fees-page {
+    padding: 1.5rem;
+    gap: 1.5rem;
+}
+.fees-main-title {
+    font-size: 2.2rem;
+}
+}
+
+@media (max-width: 768px) {
+.fees-page {
+    padding: 1rem;
+    gap: 1rem;
+}
+.fees-main-title {
+    font-size: 2rem;
+}
+}
+
+@media (max-width: 480px) {
+.fees-page {
+    padding: 0.75rem;
+}
+.fees-main-title {
+    font-size: 1.75rem;
+}
+}

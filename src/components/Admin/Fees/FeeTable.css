@@ -1,0 +1,170 @@
+.fee-table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.fee-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 600px;
+}
+
+.fee-data-table thead {
+  background: #12181e;
+  color: white;
+}
+
+.fee-data-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.fee-data-table th:hover {
+  background-color: #1c2630;
+}
+
+.sort-indicator {
+  font-size: 0.85rem;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+.sort-indicator.inactive {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sort-indicator.active {
+  color: #27ac1f;
+}
+
+.fee-data-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.fee-data-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+.fee-data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.fee-data-table td {
+  padding: 1rem 1.25rem;
+  color: #12181e;
+}
+
+.no-data {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #999;
+  font-size: 1rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4em 0.7em;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background-color: #fffbe6;
+  color: #d97706;
+}
+
+.status-badge.paid {
+  background-color: #ecfdf5;
+  color: #10b981;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.action-btn {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.record-payment-btn {
+  background: #27ac1f;
+  color: white;
+}
+
+.record-payment-btn:hover {
+  background: #1a8b13;
+  transform: translateY(-1px);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #f0f0f0;
+  gap: 1rem;
+}
+
+.pagination button {
+  background-color: #f0f0f0;
+  border: 1px solid #d0d0d0;
+  color: #333;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+  border-color: #c0c0c0;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fee-table-container { overflow-x: auto; }
+  .fee-data-table { min-width: 700px; font-size: 0.85rem; }
+  .fee-data-table th, .fee-data-table td { padding: 0.75rem 0.875rem; }
+  .actions-cell { flex-wrap: wrap; gap: 0.375rem; }
+  .action-btn { padding: 0.425rem; }
+  .pagination { padding: 0.8rem 1rem; gap: 0.8rem; }
+  .pagination button { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+}

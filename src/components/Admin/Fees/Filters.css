@@ -1,0 +1,127 @@
+
+/* src/components/Admin/Fees/Filters.css */
+
+.fee-filters-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 200px;
+  gap: 0.4rem;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.filter-input,
+.filter-select {
+  padding: 0.7rem 1rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #12181e;
+  background-color: #f8f8f8;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #27ac1f;
+  box-shadow: 0 0 0 3px rgba(39, 172, 31, 0.2);
+  background-color: #ffffff;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 1rem;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  min-width: 200px;
+}
+
+.primary-button.filter-button {
+  background-color: #27ac1f;
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  width: fit-content;
+}
+
+.primary-button.filter-button:hover {
+  background-color: #1a8b13;
+  transform: translateY(-1px);
+}
+
+.secondary-button.filter-button {
+  background-color: transparent;
+  color: #333;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.secondary-button.filter-button:hover {
+  background-color: #f0f0f0;
+  border-color: #c0c0c0;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+.fee-filters-card {
+    padding: 1.2rem 1.5rem;
+    gap: 1rem;
+}
+.filter-group {
+    flex: 1 1 180px;
+}
+.filter-input, .filter-select, .primary-button.filter-button, .secondary-button.filter-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+}
+}
+
+@media (max-width: 768px) {
+.fee-filters-card {
+    flex-direction: row;
+    align-items: stretch;
+    padding: 1rem;
+    gap: 1rem;
+}
+.filter-group {
+    flex: 1 1 100%;
+}
+.filter-actions {
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-width: unset;
+}
+.primary-button.filter-button, .secondary-button.filter-button {
+    width: 100%;
+    padding: 0.7rem 1rem;
+}
+}

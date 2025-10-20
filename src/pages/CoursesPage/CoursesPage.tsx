@@ -22,48 +22,48 @@ const CoursesPage = () => {
       name: "Computer Science and Engineering",
       code: "CSE",
       description: "Core engineering program covering software, algorithms, and computing systems",
-      credits: 3,
-      duration: 4
+      credits: 130,
+      duration: 12
     },
     {
       id: "C002",
       name: "Electronics and Communication Engineering",
       code: "ECE",
       description: "Study of electronic devices, circuits, and communication systems",
-      credits: 4,
-      duration: 6
+      credits: 180,
+      duration: 24
     },
     {
       id: "C003",
       name: "Electrical and Electronics Engineering",
       code: "EEE",
       description: "Comprehensive program in electrical power systems and electronics",
-      credits: 4,
-      duration: 3
+      credits: 150,
+      duration: 24
     },
     {
       id: "C004",
       name: "Civil Engineering",
       code: "CE",
       description: "Design and construction of infrastructure and buildings",
-      credits: 3,
-      duration: 4
+      credits: 130,
+      duration: 12
     },
     {
       id: "C005",
       name: "Mechanical Engineering",
       code: "ME",
       description: "Study of mechanical systems, thermodynamics, and manufacturing",
-      credits: 3,
-      duration: 4
+      credits: 120,
+      duration: 18
     },
     {
       id: "C006",
       name: "Information Technology",
       code: "IT",
       description: "Focus on software development, networks, and IT systems",
-      credits: 3,
-      duration: 4
+      credits: 200,
+      duration: 36
     }
   ]);
 

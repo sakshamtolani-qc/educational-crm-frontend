@@ -44,8 +44,8 @@ export const CourseModal: React.FC<CourseModalProps> = ({
         name: '',
         code: '',
         description: '',
-        credits: 3,
-        duration: 4,
+        credits: 180,
+        duration: 24,
       });
     }
   }, [course]);
@@ -194,7 +194,7 @@ export const CourseModal: React.FC<CourseModalProps> = ({
                 onChange={handleChange}
                 min="1"
                 max="300"
-                placeholder="e.g., 3"
+                placeholder="e.g., 100"
                 className={errors.credits ? 'error' : ''}
               />
               {errors.credits && <span className="error-message">{errors.credits}</span>}

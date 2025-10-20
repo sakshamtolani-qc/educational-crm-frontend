@@ -13,6 +13,7 @@ import { Navbar } from "@/components/Admin/Navbar/Navbar";
 import { Menu, X, Search, Bell, ChevronRight } from 'lucide-react';
 import FacultiesPage from "@/pages/FacultiesPage/FacultiesPage";
 import CoursesPage from "./pages/CoursesPage/CoursesPage";
+import { SubjectsPage } from "./pages/SubjectsPage/SubjectsPage";
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -123,6 +124,7 @@ const PageLayout: React.FC = () => {
           <Route path="/students" element={<StudentsPage {...pageProps} />} />
           <Route path="/faculties" element={<FacultiesPage />} />
           <Route path="/courses" element={<CoursesPage />} />
+          <Route path="/subjects" element={<SubjectsPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

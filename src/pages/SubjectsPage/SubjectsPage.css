@@ -1,0 +1,171 @@
+/* Reusing the styling conventions from CoursesPage.css */
+.subjects-page {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 2rem;
+}
+
+.page-header {
+    margin-bottom: 1.5rem; /* Reduced margin to make space for filters */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #12181e;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #27ac1f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.add-btn:hover {
+    background: #22991b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(39, 172, 31, 0.3);
+}
+
+.loading-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+    font-size: 1.125rem;
+}
+
+/* Modal and Toast styles from previous SubjectPage.css */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(18, 24, 30, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+    backdrop-filter: blur(4px); /* Added blur for better modal feel */
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem; /* Adjusted padding to match CourseModal.css */
+    background: #12181e; /* Added background to header */
+    color: white;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 3px solid #27ac1f;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    cursor: pointer;
+    padding: 0.375rem;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.modal-close:hover {
+    background-color: rgba(229, 62, 62, 0.8);
+    border-color: rgba(229, 62, 62, 1);
+}
+
+/* Toast styles (since we use the toast hook now, this can be simplified or removed, 
+but keeping the style for standalone toast if needed) */
+/* The toast component in your App.tsx uses a separate utility, so these are likely redundant now.
+   Keeping them minimized for compatibility with the original component's internal toast logic.
+.toast { display: none; }
+*/
+
+
+/* Responsive Design for Page Header */
+@media (max-width: 768px) {
+    .subjects-page {
+        padding: 1rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .page-header {
+        margin-bottom: 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .add-btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Modal responsiveness from original SubjectsPage.css */
+    .modal-content {
+        max-width: 95%;
+        max-height: 95vh;
+        margin: 0.5rem;
+    }
+
+    .modal-header {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.25rem;
+    }
+}

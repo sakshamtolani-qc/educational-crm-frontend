@@ -1,0 +1,68 @@
+
+.attendancePageContainer {
+  padding: 2rem;
+  background-color: #f8fafd;
+  min-height: calc(100vh - 60px);
+  color: #12181e;
+  font-family: 'Inter', sans-serif;
+  padding-left: 100px;
+}
+
+@media (max-width: 768px) {
+  .attendancePageContainer {
+    padding-left: 2rem;
+  }
+}
+
+.attendancePageContainer.sidebar-open {
+  padding-left: 40px;
+}
+
+.attendanceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.attendanceHeader h1 {
+  font-size: 2rem;
+  color: #12181e;
+  margin: 0;
+  font-weight: 700;
+}
+
+.saveAttendanceBtn {
+  background-color: #27ac1f;
+  color: #fff;
+  padding: 0.9rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(39, 172, 31, 0.2);
+}
+
+.saveAttendanceBtn:hover {
+  background-color: #1e8e19;
+  transform: translateY(-2px);
+}
+
+.saveAttendanceBtn:active {
+  transform: translateY(0);
+}
+
+.saveAttendanceBtn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.8;
+  transform: none;
+  box-shadow: none;
+}

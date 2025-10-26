@@ -1,30 +1,68 @@
-import { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
-import './LoginPage.css';
-import { PageLoader } from '@/components/Loader/Loader';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import "./LoginPage.css";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "@/services/authService";
+import { toast } from "@/utils/sonner";
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState(() => localStorage.getItem("rememberedEmail") || "");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(() => {
+    return !!localStorage.getItem("rememberedEmail");
+  });
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (rememberMe) {
+      const savedEmail = localStorage.getItem("rememberedEmail");
+      if (savedEmail) {
+        setEmail(savedEmail);
+      }
+    } else {
+      localStorage.removeItem("rememberedEmail");
+    }
+  }, [rememberMe]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate login delay
-    setTimeout(() => {
+    try {
+      const data = await login({ email, password });
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("userId", data.id);
+
+      if (rememberMe) {
+        localStorage.setItem("rememberedEmail", email);
+      } else {
+        localStorage.removeItem("rememberedEmail");
+      }
+
+      if (data.role === "ADMIN") {
+        toast.success("Login successful! Welcome Admin.");
+        navigate("/dashboard");
+      } else {
+        toast.error("You are not an admin!");
+        localStorage.clear();
+        navigate("/login");
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Login failed");
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
     <div className="login-container">
-      {/* Full-page loader */}
-      
       <div className="login-wrapper">
         <div className="login-left-section">
           <div className="login-brand">
@@ -33,10 +71,13 @@ export const Login = () => {
           </div>
 
           <div className="login-hero-content">
-            <h2 className="login-hero-title">Manage Your Educational Journey</h2>
+            <h2 className="login-hero-title">
+              Manage Your Educational Journey
+            </h2>
             <p className="login-hero-description">
-              Streamline student management, track progress, and enhance learning outcomes
-              with our comprehensive CRM solution designed specifically for educational institutions.
+              Streamline student management, track progress, and enhance
+              learning outcomes with our comprehensive CRM solution designed
+              specifically for educational institutions.
             </p>
 
             <div className="login-features">
@@ -44,7 +85,9 @@ export const Login = () => {
                 <div className="login-feature-icon">📚</div>
                 <div>
                   <h3 className="login-feature-title">Student Management</h3>
-                  <p className="login-feature-text">Complete student lifecycle tracking</p>
+                  <p className="login-feature-text">
+                    Complete student lifecycle tracking
+                  </p>
                 </div>
               </div>
 
@@ -52,7 +95,9 @@ export const Login = () => {
                 <div className="login-feature-icon">📊</div>
                 <div>
                   <h3 className="login-feature-title">Analytics & Insights</h3>
-                  <p className="login-feature-text">Real-time performance metrics</p>
+                  <p className="login-feature-text">
+                    Real-time performance metrics
+                  </p>
                 </div>
               </div>
 
@@ -60,7 +105,9 @@ export const Login = () => {
                 <div className="login-feature-icon">🎓</div>
                 <div>
                   <h3 className="login-feature-title">Course Management</h3>
-                  <p className="login-feature-text">Organize and deliver content effectively</p>
+                  <p className="login-feature-text">
+                    Organize and deliver content effectively
+                  </p>
                 </div>
               </div>
             </div>
@@ -71,7 +118,9 @@ export const Login = () => {
           <div className="login-form-container">
             <div className="login-form-header">
               <h2 className="login-form-title">Welcome Back</h2>
-              <p className="login-form-subtitle">Sign in to your account to continue</p>
+              <p className="login-form-subtitle">
+                Sign in to your account to continue
+              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="login-form">
@@ -100,7 +149,7 @@ export const Login = () => {
                 <div className="login-input-wrapper">
                   <Lock className="login-input-icon" />
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -113,7 +162,11 @@ export const Login = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="login-password-toggle"
                   >
-                    {showPassword ? <EyeOff className="login-toggle-icon" /> : <Eye className="login-toggle-icon" />}
+                    {showPassword ? (
+                      <EyeOff className="login-toggle-icon" />
+                    ) : (
+                      <Eye className="login-toggle-icon" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -128,7 +181,6 @@ export const Login = () => {
                   />
                   <span className="login-checkbox-label">Remember me</span>
                 </label>
-
                 <a href="#" className="login-forgot-link">
                   Forgot Password?
                 </a>
@@ -139,26 +191,11 @@ export const Login = () => {
                 disabled={isLoading}
                 className="login-submit-btn"
               >
-                {isLoading ? 'Signing in...' : 'Sign In'}
+                {isLoading ? "Signing in..." : "Sign In"}
               </button>
 
-              <div className="login-divider">
-                <span className="login-divider-text">or continue with</span>
-              </div>
-
-              <div className="login-social-buttons">
-                <button type="button" className="login-social-btn">
-                  <img src="/google-icon.png" alt="Google" className="login-social-icon google" />
-                  Google
-                </button>
-                <button type="button" className="login-social-btn">
-                  <img src="/microsoft-icon.png" alt="Microsoft" className="login-social-icon" />
-                  Microsoft
-                </button>
-              </div>
-
               <p className="login-signup-text">
-                Don't have an account?{' '}
+                Don't have an account?{" "}
                 <Link to="/signup" className="login-signup-link">
                   Sign up now
                 </Link>

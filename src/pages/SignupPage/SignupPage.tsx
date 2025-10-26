@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { GraduationCap, Users, BarChart3, BookOpen, Eye, EyeOff } from 'lucide-react';
+import { signup } from '@/services/authService';
+import { useNavigate } from 'react-router-dom';
 import './SignupPage.css';
-
 
 interface FormData {
   fullName: string;
@@ -26,6 +27,8 @@ const SignupPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -89,12 +92,31 @@ const SignupPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      setIsLoading(true);
-      console.log('Form submitted:', formData);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+    try {
+      const [firstName, ...lastNameParts] = formData.fullName.trim().split(' ');
+      const lastName = lastNameParts.join(' ');
+
+      await signup({
+        username: formData.fullName,
+        firstName,
+        lastName,
+        email: formData.email,
+        phone: '',
+        password: formData.password,
+        isActive: true,
+        gender: '',
+        role: formData.role,
+      });
+
+      alert('Signup successful! Please login.');
+      navigate('/login');
+    } catch (err: any) {
+      alert(err.message || 'Signup failed');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -104,9 +126,8 @@ const SignupPage: React.FC = () => {
         <div className="signup-left-section">
           <div className="signup-brand">
             <div className="brand-logo">
-                <img src="./logo.png" alt="Logo" style={{ width: '48px', height: '48px', objectFit: 'contain'}} />
-              </div>
-
+              <img src="./logo.png" alt="Logo" style={{ width: '48px', height: '48px', objectFit: 'contain'}} />
+            </div>
             <h1 className="signup-brand-title">Educational CRM</h1>
           </div>
 
@@ -119,9 +140,7 @@ const SignupPage: React.FC = () => {
 
             <div className="signup-features">
               <div className="signup-feature-item">
-                <div className="signup-feature-icon">
-                  <Users size={24} />
-                </div>
+                <div className="signup-feature-icon"><Users size={24} /></div>
                 <div>
                   <h3 className="signup-feature-title">Student Management</h3>
                   <p className="signup-feature-text">Complete lifecycle tracking from enrollment to graduation</p>
@@ -129,9 +148,7 @@ const SignupPage: React.FC = () => {
               </div>
 
               <div className="signup-feature-item">
-                <div className="signup-feature-icon">
-                  <BarChart3 size={24} />
-                </div>
+                <div className="signup-feature-icon"><BarChart3 size={24} /></div>
                 <div>
                   <h3 className="signup-feature-title">Analytics & Insights</h3>
                   <p className="signup-feature-text">Real-time performance metrics and actionable data</p>
@@ -139,9 +156,7 @@ const SignupPage: React.FC = () => {
               </div>
 
               <div className="signup-feature-item">
-                <div className="signup-feature-icon">
-                  <BookOpen size={24} />
-                </div>
+                <div className="signup-feature-icon"><BookOpen size={24} /></div>
                 <div>
                   <h3 className="signup-feature-title">Course Management</h3>
                   <p className="signup-feature-text">Organize and deliver content with ease</p>

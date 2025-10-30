@@ -31,6 +31,9 @@ import { ReportsPage } from "./pages/ReportsPage/ReportsPage";
 import { SettingsPage } from "./pages/SettingsPage/SettingsPage";
 import { FeesPage } from "./pages/FeesPage/FeesPage";
 import AttendancePage from "./pages/Attendance/AttendancePage";
+import { ExamsDashboard } from "./pages/Exams/ExamsDashboard";
+import { ViewAllExamsPage } from "./pages/Exams/ViewAllExamsPage";
+import { ExamDetailsPage } from "./pages/Exams/ExamDetailsPage";
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -300,6 +303,9 @@ const PageLayout: React.FC = () => {
             path="/attendance"
             element={<AttendancePage sidebarOpen={sidebarOpen} />}
           />
+
+          <Route path="/exams/*" element={<ExamsDashboard />} />
+
           <Route path="/reports" element={<ReportsPage />} />
           <Route path="/settings" element={<SettingsPage {...pageProps} />} />
         </Routes>
